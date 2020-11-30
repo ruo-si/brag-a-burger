@@ -18,6 +18,7 @@ This is a fully interactive application where the user inputs are stored in a da
 https://github.com/rialee/e-manage
 
 ### Project Deployed Link:
+https://brag-a-burger.herokuapp.com/
 
 ### License
 MIT
