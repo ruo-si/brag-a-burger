@@ -12,7 +12,7 @@ This is a fully interactive application where the user inputs are stored in a da
     Functional program deployed via Heroku
     Implementation of node.js, express and supported with SQL database organization
     Display qualified results 
-    Adhere to MVC deisgn framework
+    Adhere to MVC architectural framework
 
 ### Project Repository Link:
 https://github.com/rialee/e-manage
