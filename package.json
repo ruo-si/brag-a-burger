@@ -1,7 +1,7 @@
 {
   "name": "brag-a-burger",
   "version": "1.0.0",
-  "description": "a hamburger based social network",
+  "description": "a hamburger based social platform",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

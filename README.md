@@ -1,7 +1,7 @@
 # brag-a-burger
 
 ### Project Introduction
-Brag-A-Burger is a hamburger based social network where users can curate a favorite burger and brag their proud creation with the world before virtually enjoy it!
+Brag-A-Burger is a hamburger based social platform where users can curate a favorite burger and brag their proud creation with the world before virtually enjoy it!
 
 ### Project Objective:
 This is a fully interactive application where the user inputs are stored in a database and navigates the page upon the users choice.
