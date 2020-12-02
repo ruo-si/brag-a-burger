@@ -6,7 +6,7 @@ host: "localhost",
 port: 8080,
 user: "root",
 password: "password",
-database: "brag-a-burger-db"
+database: "brag_a_burger_db"
 });
 
 module.exports = connection;

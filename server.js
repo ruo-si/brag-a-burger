@@ -38,7 +38,6 @@ const burgers = [
 
 
 // routes
-
 // home
 app.get("/", function (req, res) {
   res.send("setup");
@@ -51,7 +50,6 @@ app.get("/grill", function (req, res) {
   res.send("on the grill");
   // res.render("index", burgers[0])
 });
-
 
 // in my tummy
 app.get("/belly", function (req, res) {
