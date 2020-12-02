@@ -1,14 +1,18 @@
 // instal dependencies 
 const express = require("express");
-const mysql = require("mysql");
-const connection = require("./config/connection")
 const exphbs = require("express-handlebars");
+const routes = require("./controller");
 
 // create instance of express app.
 const app = express();
 
 // establish port
 const PORT = process.env.PORT || 8080;
+
+// middleware
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // initiate MySQL Connection.
 connection.connect(function (err) {
@@ -23,42 +27,8 @@ connection.connect(function (err) {
 app.engine("handlebars", exphbs({ defaultlayout: "main" }));
 app.set("view engine", "handlebars");
 
-// express middleware
-app.use(express.static("public"))
-
-// mock data
-
-const burgers = [
-  {
-    burger: "double bacon delux burger"
-  }, {
-    burger: "veggie brie double avocado burger"
-  }
-]
-
-
 // routes
-// home
-app.get("/", function (req, res) {
-  res.send("setup");
-  // res.render()
-
-});
-
-// on the grill
-app.get("/grill", function (req, res) {
-  res.send("on the grill");
-  // res.render("index", burgers[0])
-});
-
-// in my tummy
-app.get("/belly", function (req, res) {
-  res.send("in my belly");
-  // res.render("index", burgers[0])
-});
-
-
-// seed tables
+app.use(routes);
 
 // listening on PORT
 app.listen(PORT, function () {
