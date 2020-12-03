@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row center-things">
+        <div class="text-center enter_section col-10">
+
+            {{!-- create burger form --}}
+            <form action="/burgers/create" method="POST">
+
+                {{!-- create burger textarea --}}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
+                </textarea>
+
+                <br>
+
+                {{!-- submit button --}}
+                <button type="submit" class="btn btn-primary" id="text-enter-button"><i class="fas fa-hamburger"></i>
+                </button>
+
+            </form>
+
+            <br>
+
+            {{!-- hint text --}}
+            <p>Enter a burger.</p>
+
+        </div>
+    </div>
+</div>

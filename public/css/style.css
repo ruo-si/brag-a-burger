@@ -1,0 +1,19 @@
+body {
+background-color: rgb(255, 255, 254);
+}
+
+.center-things {
+text-align: center;
+justify-content: center;
+}
+
+li {
+    padding: 0.1rem;
+    background-color:  rgb(241, 201, 88);
+    border-radius: 5px
+}
+
+#brand-icon{
+    padding: 2rem;
+    color: rgb(241, 201, 88);
+}

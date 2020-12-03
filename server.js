@@ -2,6 +2,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const routes = require("./controller");
+const connection = require("./config/connection");
 
 // create instance of express app.
 const app = express();
