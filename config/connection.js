@@ -1,24 +1,18 @@
 var mysql = require("mysql");
 
-if (process.env.JAWSDB_URL) {
+// use JAWSDB for deployed connection otherwise local
+var connection = process.env.JAWSDB_URL
 
-  connection = mysql.createConnection(process.envJAWS_URL)
+  ? mysql.createConnection(process.env.JAWSDB_URL)
 
-} else {
-
-  // setup mysql connection.
-  var connection = mysql.createConnection({
+  : mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "password",
     database: "brag_a_burger_db"
   });
-}
 
-
-// establish connection
-connection.connect();
 
 // export connection
 module.exports = connection;
