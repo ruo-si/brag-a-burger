@@ -1,64 +1,64 @@
 var express = require("express");
-
 var router = express.Router();
 
 // Import the model (cat.js) to use its database functions.
 var burger = require("../model/burgers.js");
 
 // Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-  burger.all(function(data) {
-    var hbsObject = {
+router.get("/", function (req, res) {
+
+  burger.all(function (data) {
+    var burgerDisplayObj = {
       burgers: data
     };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
+
+    res.render("index", burgerDisplayObj);
   });
 });
 
 // create new burger
-router.post("/api/cats", function(req, res) {
-  burger.create([
-    "name", "yummy"
-  ], [
-    req.body.name, req.body.yummy
-  ], function(result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId });
-  });
+router.post("/api/burgers", function (req, res) {
+
+  // orm create
+  burger.create(["name", "yummy"], [req.body.name, req.body.yummy],
+
+    // cb
+    function (result) {
+      // Send back the ID of the new quote
+      res.json({ id: result.insertId });
+    });
 });
 
-router.put("/api/cats/:id", function(req, res) {
+router.put("/api/burgers/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
-  console.log("condition", condition);
+  burger.update({ yummy: req.body.yummy }, condition,
 
-  burger.update({
+    // cb
+    function (result) {
+      if (result.changedRows == 0) {
 
-    yummy: req.body.yummy
-
-  }, condition, function(result) {
-
-    if (result.changedRows == 0) {
-      // err handling
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+        // err handling
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
 });
 
-router.delete("/api/cats/:id", function(req, res) {
+router.delete("/api/burgers/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
-  burger.delete(condition, function(result) {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+  burger.delete(condition,
+
+    // cb
+    function (result) {
+      if (result.affectedRows == 0) {
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
 });
 
 // Export routes for server.js to use.

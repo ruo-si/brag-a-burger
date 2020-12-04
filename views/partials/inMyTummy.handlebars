@@ -6,13 +6,13 @@
 
     <ul>
         {{!-- loop through burger object --}}
-        {{#each burger}}
+        {{#each burgers}}
 
         {{!-- condition --}}
         {{#if yummy}}
         {{> burgers/burger-block yummy=false}}
         {{/if}}
-        
+
         {{/each}}
     </ul>
 
