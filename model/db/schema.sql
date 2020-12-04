@@ -1,13 +1,14 @@
 -- create database
-DROP DATABASE IF EXISTS brag-a-burger-db;
-CREATE DATABASE brag-a-burger-db;
-use brag-a-burger-db;
+DROP DATABASE IF EXISTS brag_a_burger_db;
+CREATE DATABASE brag_a_burger_db;
+use brag_a_burger_db;
 
 -- create table
 CREATE TABLE burgers (
+
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    burger_name VARCHAR(250) NOT NULL,
-    in_my_tummy BOOL DEFAULT false
+    name VARCHAR(300) NOT NULL,
+    yummy BOOLEAN DEFAULT false
 );
 
 SELECT * FROM burgers;

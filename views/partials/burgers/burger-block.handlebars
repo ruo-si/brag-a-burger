@@ -1,0 +1,11 @@
+<li>
+	{{name}}
+
+	<button class="change-yummy btn btn-light" data-id="{{id}}" data-newYummy="{{yummy}}">
+		{{#if yummy}}yummy!{{else}}another please!{{/if}}
+	</button>
+
+	<button class="delete-burger btn btn-light" data-id="{{this.id}}">
+		<i class="far fa-trash-alt"></i>
+	</button>
+</li>

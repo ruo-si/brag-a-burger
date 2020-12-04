@@ -1,6 +1,6 @@
 const connection = require("./connection.js");
 
-// helper function to insert placeholders for expected values
+// helper function to insert ?
 function printQuestionMarks(num) {
     var arr = [];
 
@@ -13,26 +13,15 @@ function printQuestionMarks(num) {
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
+
     var arr = [];
-
-    // loop through the keys and push the key/value as a string int arr
+  
     for (var key in ob) {
-        var value = ob[key];
-        // check to skip hidden properties
-        if (Object.hasOwnProperty.call(ob, key)) {
-
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-            // convert object to string
-            arr.push(key + "=" + value);
-        }
+      arr.push(key + "=" + ob[key]);
     }
-
-    // translate array of strings to a single comma-separated string
+  
     return arr.toString();
-}
+  }
 
 
 // start of orm configuration SQL statement functions.
@@ -40,8 +29,8 @@ var orm = {
 
     // SELECT * FROM ...
     all: function (tableInput, cb) {
-        var query = "SELECT * FROM " + tableInput + ";";
-        connection.query(query, function (err, res) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -51,18 +40,18 @@ var orm = {
 
     // INSERT INTO ... VALUES
     create: function (table, cols, vals, cb) {
-        var query = "INSERT INTO " + table;
+        var queryString = "INSERT INTO " + table;
 
-        query += " (";
-        query += cols.toString();
-        query += ") ";
-        query += "VALUES (";
-        query += printQuestionMarks(vals.length);
-        query += ") ";
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
 
-        console.log(query);
+        console.log(queryString);
 
-        connection.query(query, vals, function (err, res) {
+        connection.query(queryString, vals, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -73,15 +62,15 @@ var orm = {
 
     // UPDATE... SET ... WHERE
     update: function (table, objColVals, condition, cb) {
-        var query = "UPDATE " + table;
+        var queryString = "UPDATE " + table;
 
-        query += " SET ";
-        query += objToSql(objColVals);
-        query += " WHERE ";
-        query += condition;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
 
-        console.log(query);
-        connection.query(query, function (err, res) {
+        console.log(queryString);
+        connection.query(queryString, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -92,11 +81,11 @@ var orm = {
 
     // SELETE FROM...WHERE
     delete: function (table, condition, cb) {
-        var query = "DELETE FROM " + table;
-        query += " WHERE ";
-        query += condition;
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE ";
+        queryString += condition;
 
-        connection.query(query, function (err, res) {
+        connection.query(queryString, function (err, res) {
             if (err) {
                 throw err;
             }

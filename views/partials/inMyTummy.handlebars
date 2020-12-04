@@ -1,0 +1,19 @@
+<div class="card bg-transparent border-0 col-4">
+    <h2>In my Tummy
+        &nbsp;
+        <i class="fas fa-utensils"></i>
+    </h2>
+
+    <ul>
+        {{!-- loop through burger object --}}
+        {{#each burger}}
+
+        {{!-- condition --}}
+        {{#if yummy}}
+        {{> burgers/burger-block yummy=false}}
+        {{/if}}
+        
+        {{/each}}
+    </ul>
+
+</div>

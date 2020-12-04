@@ -1,35 +1,62 @@
-$(document).ready(function () {
+// Make sure we wait to attach our handlers until the DOM is fully loaded.
+$(function() {
+  $(".change-yummy").on("click", function(event) {
+    var id = $(this).data("id");
+    var newYummy = $(this).data("newYummy");
 
-    // burger create button
-    const $devouredBtn = $("#devoured-btn")
+    var newYummyState = {
+      yummy: newYummy
+    };
 
-    // form event listener
-    $devouredBtn.on("submit", function (e) {
-        e.preventDefault();
+    // Send the PUT request.
+    $.ajax("/api/cats/" + id, {
+      type: "PUT",
+      data: newYummyState
+    }).then(
+      function() {
+        console.log("changed yummy to", newYummy);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
-        // get reference to the requested burger
-        console.log(this);
-        const burgerID = $(this).children(".burger_id").val();
+  $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-        // post the requested burger in devoured column in db
-        $.ajax({
-            method: "PUT",
-            url: "/burgers/" + burger_id
-        }).then(function (data) {
-            
-            // reload page to show burgers
-            location.reload();
-        });
-    });
+    var newBurger = {
+      name: $("#new-burger").val().trim(),
+      yummy: $("[name=yummy]:checked").val().trim()
+    };
 
+    // Send the POST request.
+    $.ajax("/api/cats", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created a new burger");
 
-    // clear devoured data
-    const $clearBtn = $("#clear-btn");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
-    $clearBtn.on("click", function (e){
+  $(".delete-cat").on("click", function(event) {
+    var id = $(this).data("id");
 
-        // delete request
+    // Send the DELETE request.
+    $.ajax("/api/cats/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted a burger", id);
 
-    });
-
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 });

@@ -1,19 +1,53 @@
-{{!-- logo container  --}}
+<!-- logo container -->
 <div class="center-things">
 
-    {{!-- brand logo  --}}
-    <i class="fab fa-stack-exchange fa-10x" id="brand-icon"></i>
+  <!-- brand logo -->
+  <i class="fab fa-stack-exchange fa-10x" id="brand-icon"></i>
 
 </div>
 
-{{!-- header text  --}}
-<h1 class="center-things"> Brag a Burger </h1>
-<br>
 
-{{!-- container for cards --}}
-{{> display }}
+<div class="center-things">
 
-<br><br>
+  <h2>Brag a Burger!</h2>
 
-{{!-- create burger container --}}
-{{> create }}
+  <p>A hamburger based social network</p>
+
+  {{!-- create burger form --}}
+  <form class="create-form form-group">
+
+    <label for="new-burger">Enter a Burger:</label>
+
+    {{!-- burger create imput --}}
+    <input type="text" id="new-burger" name="name">
+
+    {{!-- add burger button --}}
+    <button type="submit" class="btn btn-primary">
+
+      {{!-- burger icon --}}
+      <i class="fas fa-hamburger"></i>
+
+    </button>
+
+    <div>
+      {{!-- insert burger to... --}}
+      <div class="form-group">
+
+        <input type="radio" name="yummy" value="0" checked> Throw on Grill! <br>
+
+        <input type="radio" name="yummy" value="1"> Eat now!
+
+      </div>
+    </div>
+  </form>
+
+</div>
+
+{{!-- burger display container --}}
+<div class="row center-things">
+
+  {{> onTheGrill }}
+
+  {{> inMyTummy }}
+
+</div>

@@ -7,13 +7,35 @@ text-align: center;
 justify-content: center;
 }
 
-li {
+/* li {
     padding: 0.1rem;
     background-color:  rgb(241, 201, 88);
     border-radius: 5px
-}
+} */
 
 #brand-icon{
     padding: 2rem;
     color: rgb(241, 201, 88);
 }
+
+
+li {
+    padding: 5px;
+    margin: 5px;
+    background: rgb(241, 201, 88);
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .create-update-form {
+    padding: 5px;
+    margin: 5px;
+    background: aqua;
+  }
+  
+  .form-group {
+    margin-bottom: 5px;
+  }
+  

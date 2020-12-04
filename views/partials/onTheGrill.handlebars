@@ -1,0 +1,19 @@
+<div class="card bg-transparent border-0 col-4">
+    <h2>On The Grill
+        &nbsp;
+        <i class="far fa-clock"></i>
+    </h2>
+
+    <ul>
+        {{!-- loop through burger object --}}
+        {{#each burger}}
+
+        {{!-- condition --}}
+        {{#unless yummy}}
+        {{> burgers/burger-block yummy=true}}
+        {{/unless}}
+
+        {{/each}}
+    </ul>
+
+</div>
