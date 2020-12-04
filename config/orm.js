@@ -11,7 +11,6 @@ function printQuestionMarks(num) {
     return arr.toString();
 };
 
-
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
     var arr = [];
@@ -21,7 +20,7 @@ function objToSql(ob) {
         var value = ob[key];
         // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
-            
+
             // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
@@ -38,6 +37,8 @@ function objToSql(ob) {
 
 // start of orm configuration SQL statement functions.
 var orm = {
+
+    // SELECT * FROM ...
     all: function (tableInput, cb) {
         var query = "SELECT * FROM " + tableInput + ";";
         connection.query(query, function (err, res) {
@@ -47,6 +48,8 @@ var orm = {
             cb(res);
         });
     },
+
+    // INSERT INTO ... VALUES
     create: function (table, cols, vals, cb) {
         var query = "INSERT INTO " + table;
 
@@ -67,7 +70,8 @@ var orm = {
             cb(res);
         });
     },
-    // An example of objColVals would be {name: bacon burger, devoured: true}
+
+    // UPDATE... SET ... WHERE
     update: function (table, objColVals, condition, cb) {
         var query = "UPDATE " + table;
 
@@ -85,6 +89,8 @@ var orm = {
             cb(res);
         });
     },
+
+    // SELETE FROM...WHERE
     delete: function (table, condition, cb) {
         var query = "DELETE FROM " + table;
         query += " WHERE ";
