@@ -1,8 +1,11 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+
+  // change between on the grill to in my tummy
   $(".change-yummy").on("click", function(event) {
+
+    // reference values
     var id = $(this).data("id");
-    var newYummy = $(this).data("newYummy");
+    var newYummy = $(this).data("newyummy");
 
     var newYummyState = {
       yummy: newYummy
@@ -10,12 +13,14 @@ $(function() {
 
     // PUT request.
     $.ajax("/api/burgers/" + id, {
+
       type: "PUT",
       data: newYummyState
+
     }).then(
       function() {
-        console.log("changed yummy to", newYummy);
 
+        console.log("changed yummy to", newYummy);
         // Reload the page to get the updated list
         location.reload();
       }
